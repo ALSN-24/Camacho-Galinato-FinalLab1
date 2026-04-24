@@ -9,11 +9,10 @@ if (!isset($_SESSION['user'])) {
 $name             = $_SESSION['user'];
 $current_datetime = date("F j, Y - h:i A");
 
-// last visit before overwriting
-$last_visit = isset($_COOKIE['last_visit']) ? $_COOKIE['last_visit'] : null;
+session_start();
 
-// cookie named 'last_visit' — expires in 1 day
-setcookie('last_visit', $current_datetime, time() + 86400, '/');
+session_start();
+date_default_timezone_set('Asia/Manila');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +31,7 @@ setcookie('last_visit', $current_datetime, time() + 86400, '/');
 
     <p>Welcome, <?= $name ?>!</p>
 
-    <p>Today is: <?= $current_datetime ?></p>
+    <p>Welcome, <?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>!</p>
 
     <p>
         <?= $last_visit ? htmlspecialchars($last_visit, ENT_QUOTES, 'UTF-8') : 'No previous visit on record.' ?>
