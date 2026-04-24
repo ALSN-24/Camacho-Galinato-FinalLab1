@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['name'])) {
+if (!isset($_SESSION['user'])) {
     header("Location: index.php");
     exit();
 }
 
-$name             = $_SESSION['name'];
+$name             = $_SESSION['user'];
 $current_datetime = date("F j, Y - h:i A");
 
 // last visit before overwriting
